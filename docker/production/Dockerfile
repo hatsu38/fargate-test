@@ -20,7 +20,7 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR_VERSION.x | bash - && 
 FROM builder AS bundle
 
 COPY Gemfile Gemfile.lock .
-RUN bundle install --deployment --without=development:test --path=vendor/bundle && rm -rf $BUNDLE_PATH/ruby/$RUBY_VERSION/cache/*
+RUN bundle install --deployment --without development:test --path vendor/bundle && rm -rf vendor/bundle/ruby/$RUBY_VERSION/cache/*
 
 # yarn
 FROM builder AS yarn
