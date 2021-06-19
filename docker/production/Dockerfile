@@ -3,7 +3,9 @@ FROM ruby:2.7.2 AS base
 WORKDIR /app
 ENV RAILS_ENV production
 ENV NODE_MAJOR_VERSION 14
-
+ENV BUNDLE_DEPLOYMENT true
+ENV BUNDLE_PATH vendor/bundle
+ENV BUNDLE_WITHOUT development:test
 RUN gem update --system && gem install bundler:2.1.4
 
 # builder
@@ -20,7 +22,7 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR_VERSION.x | bash - && 
 FROM builder AS bundle
 
 COPY Gemfile Gemfile.lock .
-RUN bundle install --deployment --without development:test --path vendor/bundle && rm -rf vendor/bundle/ruby/$RUBY_VERSION/cache/*
+RUN bundle install --jobs=4 --retry=3 && rm -rf $BUNDLE_PATH/ruby/$RUBY_VERSION/cache/*
 
 # yarn
 FROM builder AS yarn
