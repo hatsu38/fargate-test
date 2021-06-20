@@ -51,6 +51,6 @@ test:
 production:
   <<: *default
   database: fargate_test
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  host: <%= ENV['DB_HOST'] %>
