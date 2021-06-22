@@ -1,0 +1,9 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "deploy/task-definition.json" # タスク定義ファイルのパス
+        LoadBalancerInfo:
+          ContainerName: "fargate-test" # ECRのコンテナ名
+          ContainerPort: 80
