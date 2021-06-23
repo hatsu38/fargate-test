@@ -37,7 +37,6 @@ module FargateTest
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
-    config.available_locales = :ja
     I18n.enforce_available_locales = false
     config.i18n.default_locale = :ja
     # Don't generate system test files.
