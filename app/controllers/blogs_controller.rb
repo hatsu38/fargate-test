@@ -24,32 +24,26 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
 
-    respond_to do |format|
-      if @blog.save
-        redirect_to @blog, notice: "Blog was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @blog.save
+      redirect_to @blog, notice: "Blog was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /blogs/1 or /blogs/1.json
   def update
-    respond_to do |format|
-      if @blog.update(blog_params)
-        redirect_to @blog, notice: "Blog was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @blog.update(blog_params)
+      redirect_to @blog, notice: "Blog was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /blogs/1 or /blogs/1.json
   def destroy
     @blog.destroy
-    respond_to do |format|
-      redirect_to blogs_url, notice: "Blog was successfully destroyed."
-    end
+    redirect_to blogs_url, notice: "Blog was successfully destroyed."
   end
 
   private

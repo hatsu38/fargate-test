@@ -23,32 +23,26 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        redirect_to @user, notice: "User was successfully created."
-      else
-        render :new, status: :unprocessable_entity
-      end
+    if @user.save
+      redirect_to @user, notice: "User was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        redirect_to @user, notice: "User was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @user.update(user_params)
+      redirect_to @user, notice: "User was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.destroy
-    respond_to do |format|
-      redirect_to users_url, notice: "User was successfully destroyed."
-    end
+    redirect_to users_url, notice: "User was successfully destroyed."
   end
 
   private
