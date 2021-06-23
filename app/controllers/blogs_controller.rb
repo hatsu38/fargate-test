@@ -8,6 +8,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1 or /blogs/1.json
   def show
+    Batch::TestJob.perform_async
   end
 
   # GET /blogs/new
@@ -23,37 +24,26 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
 
-    respond_to do |format|
-      if @blog.save
-        format.html { redirect_to @blog, notice: "Blog was successfully created." }
-        format.json { render :show, status: :created, location: @blog }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
+    if @blog.save
+      redirect_to @blog, notice: "Blog was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /blogs/1 or /blogs/1.json
   def update
-    respond_to do |format|
-      if @blog.update(blog_params)
-        format.html { redirect_to @blog, notice: "Blog was successfully updated." }
-        format.json { render :show, status: :ok, location: @blog }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
-      end
+    if @blog.update(blog_params)
+      redirect_to @blog, notice: "Blog was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /blogs/1 or /blogs/1.json
   def destroy
     @blog.destroy
-    respond_to do |format|
-      format.html { redirect_to blogs_url, notice: "Blog was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to blogs_url, notice: "Blog was successfully destroyed."
   end
 
   private

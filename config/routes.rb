@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   root "users#index"
 
   resources :blogs
@@ -8,4 +9,5 @@ Rails.application.routes.draw do
   namespace :api do
     resources :health_check, only: :index
   end
+  mount Sidekiq::Web, at: "/sidekiq"
 end
