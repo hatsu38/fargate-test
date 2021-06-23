@@ -103,13 +103,7 @@
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": [],
-      "portMappings": [
-        {
-          "hostPort": 80,
-          "protocol": "tcp",
-          "containerPort": 80
-        }
+      "entryPoint": []
       ],
       "command": [
         "bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"
