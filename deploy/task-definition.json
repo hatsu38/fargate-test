@@ -103,8 +103,7 @@
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": []
-      ],
+      "entryPoint": [],
       "command": [
         "bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"
       ],
