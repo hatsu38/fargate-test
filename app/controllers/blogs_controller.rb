@@ -8,6 +8,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1 or /blogs/1.json
   def show
+    Batch::TestJob.perform_async
   end
 
   # GET /blogs/new
