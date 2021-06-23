@@ -58,9 +58,9 @@ jobs:
       id: task-def-with-sidekiq
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: deploy/task-definition.json
-        container-name: fargate-test
-        image: ${{ steps.task-def-with-rails.outputs.task-definition }} # 上のid: task-def-with-railsを利用する
+        task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }} # 上のid: task-def-with-railsを利用する
+        container-name: fargate-test-sidekiq # コンテナ名を記述
+        image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
