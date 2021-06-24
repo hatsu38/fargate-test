@@ -10,4 +10,5 @@ Rails.application.routes.draw do
     resources :health_check, only: :index
   end
   mount Sidekiq::Web, at: "/sidekiq"
+  mount Flipper::UI.app(Flipper) => '/flipper'
 end
