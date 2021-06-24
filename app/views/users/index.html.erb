@@ -25,3 +25,10 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+
+
+<% if Flipper.enabled?(:test_feature_flag) %>
+  <%= link_to "index blogs", blogs_path %>
+<% else %>
+  <%= link_to "hoge index blogs", blogs_path %>
+<% end %>

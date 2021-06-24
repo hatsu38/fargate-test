@@ -31,6 +31,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'sidekiq' # 非同期Job
 gem 'redis' # Sudekiqやキャッシュの保存に利用
 gem 'redis-namespace'
+gem 'flipper' # FeatureFlag
+gem 'flipper-ui' # FeatureFlagを管理する管理画面を用意
+gem 'flipper-active_record' # FeatureFalgを永続化する
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
