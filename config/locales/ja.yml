@@ -208,5 +208,6 @@ ja:
       employee: 従業員
   attributes:
     name: 名前
+    title: タイトル
     created_at: 作成日時
     updated_at: 更新日時

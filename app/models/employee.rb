@@ -19,6 +19,7 @@
 class Employee < ApplicationRecord
   # Relations
   belongs_to :employee_authenticate
+  has_many :blogs
 
   # Validations
   validates :name, presence: true

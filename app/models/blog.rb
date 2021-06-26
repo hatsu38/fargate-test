@@ -17,4 +17,17 @@
 #  fk_rails_...  (employee_id => employees.id)
 #
 class Blog < ApplicationRecord
+  # Relations
+  belongs_to :employee
+
+  # Validations
+  validates :title, presence: true
+
+  # Callbacks
+
+  # Delegates
+
+  # Scopes
+
+  # Methods
 end

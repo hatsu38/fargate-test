@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_employee_authenticate!
   before_action :set_blog, only: %i[ show edit update destroy ]
 
   # GET /blogs or /blogs.json
@@ -8,7 +9,6 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1 or /blogs/1.json
   def show
-    Batch::TestJob.perform_async
   end
 
   # GET /blogs/new
@@ -54,6 +54,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title)
+      params.require(:blog).permit(:title).merge(employee: current_employee_authenticate.employee)
     end
 end

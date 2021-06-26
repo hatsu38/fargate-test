@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :employee_authenticates
   require 'sidekiq/web'
-  root "users#index"
+  root "blogs#index"
 
   resources :blogs
   resources :users
