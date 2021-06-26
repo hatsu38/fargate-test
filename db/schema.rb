@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_071955) do
+ActiveRecord::Schema.define(version: 2021_06_26_095925) do
 
   create_table "blogs", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "employee_id"
     t.string "title", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_blogs_on_employee_id"
   end
 
   create_table "employee_authenticates", charset: "utf8mb4", force: :cascade do |t|
@@ -65,5 +67,6 @@ ActiveRecord::Schema.define(version: 2021_06_26_071955) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "blogs", "employees"
   add_foreign_key "employees", "employee_authenticates"
 end
