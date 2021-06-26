@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :employee_authenticates
   require 'sidekiq/web'
   root "users#index"
 
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
   end
   mount Sidekiq::Web, at: "/sidekiq"
   mount Flipper::UI.app(Flipper) => '/flipper'
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
