@@ -34,14 +34,19 @@ gem 'redis-namespace'
 gem 'flipper' # FeatureFlag
 gem 'flipper-ui' # FeatureFlagを管理する管理画面を用意
 gem 'flipper-active_record' # FeatureFalgを永続化する
+gem 'devise' # ログイン機能
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'pry-rails' # デバッグ用
+  gem 'pry-byebug' # デバッグ用
 end
 
 group :development do
+  gem 'annotate' # テーブル情報を出力
+  gem 'letter_opener_web' # development環境で送信したメールをWebで見る
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
