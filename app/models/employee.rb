@@ -17,4 +17,18 @@
 #  fk_rails_...  (employee_authenticate_id => employee_authenticates.id)
 #
 class Employee < ApplicationRecord
+  # Relations
+  belongs_to :employee_authenticate
+
+  # Validations
+  validates :name, presence: true
+
+  # Callbacks
+
+  # Delegates
+
+  # Scopes
+
+  # Methods
+
 end
