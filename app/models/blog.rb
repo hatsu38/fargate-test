@@ -2,11 +2,11 @@
 #
 # Table name: blogs
 #
-#  id          :bigint           not null, primary key
-#  employee_id :bigint
-#  title       :string(255)      default(""), not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id              :bigint           not null, primary key
+#  employee_id     :bigint
+#  title(タイトル) :string(255)      not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #
