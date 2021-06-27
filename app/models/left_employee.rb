@@ -20,6 +20,7 @@
 class LeftEmployee < ApplicationRecord
 
   # Relations
+  belongs_to :employee
 
   # Validations
 

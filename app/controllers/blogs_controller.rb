@@ -43,7 +43,7 @@ class BlogsController < ApplicationController
   # DELETE /blogs/1 or /blogs/1.json
   def destroy
     @blog.destroy
-    redirect_to blogs_url, notice: "Blog was successfully destroyed."
+    redirect_to root_path, notice: "Blog was successfully destroyed."
   end
 
   private

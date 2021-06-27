@@ -5,8 +5,7 @@ class EmployeeProfiles::LeavesController < ApplicationController
     @employee_profile = EmployeeProfile.find(params[:employee_profile_id])
     employee = @employee_profile.employee
     ActiveRecord::Base.transaction do
-      @employee_profile.destroy
-      employee.employee_authenticate.destroy
+      employee.leave!
       reset_session
     end
     redirect_to employee_profiles_path, notice: "退会完了しました"

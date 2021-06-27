@@ -11,6 +11,7 @@ class Employee < ApplicationRecord
   has_one :employee_authenticate
   has_one :employee_profile
   has_many :blogs
+  has_many :left_employees
 
   # Validations
 
@@ -22,4 +23,17 @@ class Employee < ApplicationRecord
 
   # Methods
 
+  def active?
+    self.employee_authenticate && self.employee_profile
+  end
+
+  def already_left?
+    self.left_employees.precent?
+  end
+
+  def leave!
+    LeftEmployee.create(employee: self, email: self.employee_authenticate.email, name: self.employee_profile.name)
+    self.employee_profile.destroy
+    self.employee_authenticate.destroy
+  end
 end
