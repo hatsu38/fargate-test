@@ -1,0 +1,5 @@
+<% @employee_profiles.each do |employee| %>
+  <%= employee.name %>
+<% end %>
+
+<%= link_to "新規作成", new_employee_profile_path %>

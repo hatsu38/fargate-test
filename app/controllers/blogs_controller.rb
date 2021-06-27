@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_employee_authenticate!
+  before_action :authenticate_employee_authenticate!, %i[ new edit create update destroy]
   before_action :set_blog, only: %i[ show edit update destroy ]
 
   # GET /blogs or /blogs.json
@@ -54,6 +54,6 @@ class BlogsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_params
-      params.require(:blog).permit(:title).merge(employee: current_employee_authenticate.employee)
+      params.require(:blog).permit(:title).merge(employee_id: current_employee_authenticate.employee_id)
     end
 end
