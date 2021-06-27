@@ -1,0 +1,7 @@
+<h1><%= @employee_profile.name %></h1>
+
+<% @blogs.each do |blog| %>
+  <%= link_to blog.title, blog_path(id: blog.id) %>
+<% end %>
+
+<%= link_to "退会", employee_profile_leave_path(employee_profile_id: @employee_profile.id), method: :delete %>

@@ -1,0 +1,7 @@
+<%= form_with model: @employee_profile do |form| %>
+  <%= render "shared/error_messages", model: @employee_profile %>
+  <%= form.label :name, "名前" %>
+  <%= form.text_field :name %>
+
+  <%= form.submit "保存する" %>
+<% end %>
