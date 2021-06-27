@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_26_095925) do
+ActiveRecord::Schema.define(version: 2021_06_27_101009) do
 
   create_table "blogs", charset: "utf8mb4", comment: "ブログ", force: :cascade do |t|
     t.bigint "employee_id"
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2021_06_26_095925) do
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
+  create_table "left_employees", charset: "utf8mb4", comment: "退会した従業員", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.string "email", default: "", null: false, comment: "emailアドレス"
+    t.string "name", default: "", null: false, comment: "従業員名"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_left_employees_on_employee_id"
+  end
+
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -77,4 +86,5 @@ ActiveRecord::Schema.define(version: 2021_06_26_095925) do
   add_foreign_key "blogs", "employees"
   add_foreign_key "employee_authenticates", "employees"
   add_foreign_key "employee_profiles", "employees"
+  add_foreign_key "left_employees", "employees"
 end

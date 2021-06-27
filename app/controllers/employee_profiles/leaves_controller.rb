@@ -2,7 +2,6 @@ class EmployeeProfiles::LeavesController < ApplicationController
   before_action :authenticate_employee_authenticate!
 
   def destroy
-    binding.pry
     @employee_profile = EmployeeProfile.find(params[:employee_profile_id])
     employee = @employee_profile.employee
     ActiveRecord::Base.transaction do
