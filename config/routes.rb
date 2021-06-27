@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :employee_profiles do
     scope module: :employee_profiles do
-      resource :leave, only: %i[ show destroy]
+      resource :leave, only: %i[show destroy]
     end
   end
 
