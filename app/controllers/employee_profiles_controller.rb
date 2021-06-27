@@ -5,6 +5,11 @@ class EmployeeProfilesController < ApplicationController
     @employee_profiles = EmployeeProfile.all
   end
 
+  def show
+    @employee_profile = EmployeeProfile.find(params[:id])
+    @blogs = @employee_profile.employee.blogs
+  end
+
   def new
     @employee_profile = EmployeeProfile.new(employee_id: current_employee_authenticate.employee_id)
   end
@@ -12,7 +17,7 @@ class EmployeeProfilesController < ApplicationController
   def create
     @employee_profile = EmployeeProfile.new(employee_profile_params)
     if @employee_profile.save
-      redirect_to employees_path
+      redirect_to employee_profiles_path
     else
       render :new
     end

@@ -14,6 +14,10 @@
     <% @blogs.each do |blog| %>
       <tr>
         <td><%= blog.title %></td>
+        <td>
+        <% if blog.employee.employee_profile %>
+          <%= link_to blog.employee.employee_profile&.name, employee_profile_path(id: blog.employee.employee_profile&.id) %></td>
+        <% end %>
         <td><%= link_to 'Show', blog %></td>
         <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
         <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
