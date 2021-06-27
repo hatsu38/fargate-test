@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_employee_authenticate!, %i[ new edit create update destroy]
+  before_action :authenticate_employee_authenticate!, only: %i[ new edit create update destroy]
   before_action :set_blog, only: %i[ show edit update destroy ]
 
   # GET /blogs or /blogs.json

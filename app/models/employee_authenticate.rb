@@ -32,6 +32,23 @@ class EmployeeAuthenticate < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-
+  # Relations
   belongs_to :employee
+
+  # Validations
+
+  # Callbacks
+  before_validation :set_employee
+
+  # Delegates
+
+  # Scopes
+
+  # Methods
+
+  private
+
+  def set_employee
+    self.employee = Employee.new if employee.nil?
+  end
 end
