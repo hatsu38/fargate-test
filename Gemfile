@@ -35,6 +35,7 @@ gem 'flipper' # FeatureFlag
 gem 'flipper-ui' # FeatureFlagを管理する管理画面を用意
 gem 'flipper-active_record' # FeatureFalgを永続化する
 gem 'devise' # ログイン機能
+gem 'lograge' # ログを見やすくする
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
