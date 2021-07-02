@@ -13,6 +13,7 @@ module CulpritTracking
       source_method = request.env["REQUEST_METHOD"]
       source_system = fetch_subsystem(controller)
       affected_user = fetch_audit_user(controller)
+      request_url   = request.url
       ip            = request.headers["HTTP_X_REAL_IP"] || request.remote_ip
       referer       = request.referer
       user_agent    = request.user_agent
@@ -23,6 +24,7 @@ module CulpritTracking
         source_system: source_system,
         affected_user: affected_user ? "id:#{affected_user&.id} employee_id:#{affected_user&.employee_id}" : "unknown",
         ip: ip,
+        request_ur: request_url,
         referer: referer,
         user_agent: user_agent
       }
