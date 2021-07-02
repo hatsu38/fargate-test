@@ -53,20 +53,11 @@ jobs:
         container-name: fargate-test
         image: ${{ steps.build-image.outputs.image }}
 
-    # Sidekiqコンテナの設定を追加
-    - name: 【Sidekiq】 Fill in the new image ID in the Amazon ECS task definition
-      id: task-def-with-sidekiq
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }} # 上のid: task-def-with-railsを利用する
-        container-name: fargate-test-sidekiq # コンテナ名を記述
-        image: ${{ steps.build-image.outputs.image }}
-
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         # sidekiqコンテナの設定を追加したtask定義を読み込むように編集
-        task-definition: ${{ steps.task-def-with-sidekiq.outputs.task-definition }} # 上のid: task-def-with-sidekiqを利用する
+        task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }} # 上のid: task-def-with-sidekiqを利用する
         service: fargate-test
         cluster: fargate-test
         wait-for-service-stability: true
