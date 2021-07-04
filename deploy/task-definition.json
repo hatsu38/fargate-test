@@ -3,6 +3,7 @@
   "executionRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
+      "name": "fargate-test",
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": null,
@@ -60,8 +61,7 @@
           "valueFrom": "/fargate-test/redis-url",
           "name": "REDIS_URL"
         }
-      ],
-      "name": "fargate-test"
+      ]
     },
     {
       "name": "fargate-test-nginx",
@@ -78,7 +78,7 @@
         "options": {
           "awslogs-group": "/ecs/fargate-test",
           "awslogs-region": "ap-northeast-1",
-          "awslogs-stream-prefix": "ecs/fargate-test-nginx"
+          "awslogs-stream-prefix": "ecs/fargate-test"
         }
       }
     }
@@ -90,7 +90,6 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:318288222771:task-definition/fargate-test:5",
   "family": "fargate-test",
   "pidMode": null,
   "requiresCompatibilities": [
