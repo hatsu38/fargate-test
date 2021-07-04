@@ -6,5 +6,6 @@ namespace :sample_task do
     Rails.logger = Logger.new(STDOUT)
     puts("========Exec Sample Task=========")
     puts Rails.logger.info task.name
+    puts("========Finish Sample Task=========")
   end
 end
