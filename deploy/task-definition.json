@@ -66,7 +66,6 @@
     {
       "name": "fargate-test-nginx",
       "essential": true,
-      "links": ["fargate-test"],
       "portMappings": [
         {
           "hostPort": 80,
