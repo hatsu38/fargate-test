@@ -15,7 +15,7 @@
       "entryPoint": [],
       "portMappings": [
         {
-          "hostPort": 0,
+          "hostPort": 3000,
           "protocol": "tcp",
           "containerPort": 3000
         }
@@ -69,7 +69,7 @@
       "links": ["fargate-test"],
       "portMappings": [
         {
-          "hostPort": 0,
+          "hostPort": 80,
           "protocol": "tcp",
           "containerPort": 80
         }
