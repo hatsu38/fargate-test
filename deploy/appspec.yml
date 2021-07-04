@@ -5,5 +5,5 @@ Resources:
       Properties:
         TaskDefinition: "deploy/task-definition.json" # タスク定義ファイルのパス
         LoadBalancerInfo:
-          ContainerName: "fargate-test-app" # ECRのコンテナ名
+          ContainerName: "fargate-test-nginx" # ECRのコンテナ名
           ContainerPort: 80
