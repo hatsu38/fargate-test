@@ -1,3 +1,7 @@
+# docker build -f docker/production/Dockerfile.nginx -t fargate-test-nginx .
+# docker tag fargate-test-nginx:latest xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
+# docker push xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
+
 FROM nginx:1.21.0
 
 RUN apt-get update -qq && \
