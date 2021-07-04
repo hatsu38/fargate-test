@@ -78,7 +78,13 @@
           "awslogs-region": "ap-northeast-1",
           "awslogs-stream-prefix": "ecs/fargate-test"
         }
-      }
+      },
+      "volumesFrom": [
+        {
+          "sourceContainer": "fargate-test",
+          "readOnly": null
+        }
+      ]
     }
   ],
   "placementConstraints": [],
