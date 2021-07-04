@@ -1,5 +1,4 @@
 {
-  "ipcMode": null,
   "executionRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
@@ -24,7 +23,6 @@
       "command": [
         "/app/entrypoint.sh"
       ],
-      "linuxParameters": null,
       "cpu": 0,
       "environment": [
         {
@@ -87,11 +85,9 @@
   "memory": "512",
   "taskRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "compatibilities": [
-    "EC2",
     "FARGATE"
   ],
-  "family": "fargate-test",
-  "pidMode": null,
+  "family": "fargate-test-app",
   "requiresCompatibilities": [
     "FARGATE"
   ],
