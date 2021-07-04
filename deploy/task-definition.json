@@ -62,59 +62,6 @@
         }
       ],
       "name": "fargate-test"
-    },
-    {
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "secretOptions": null,
-        "options": {
-          "awslogs-group": "/ecs/fargate-test",
-          "awslogs-region": "ap-northeast-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      },
-      "entryPoint": [],
-      "command": [
-        "bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"
-      ],
-      "cpu": 0,
-      "environment": [
-        {
-          "name": "RAILS_ENV",
-          "value": "production"
-        },
-        {
-          "name": "RAILS_LOG_TO_STDOUT",
-          "value": "true"
-        },
-        {
-          "name": "RAILS_SERVE_STATIC_FILES",
-          "value": "true"
-        }
-      ],
-      "secrets": [
-        {
-          "valueFrom": "/fargate-test/db-host",
-          "name": "DB_HOST"
-        },
-        {
-          "valueFrom": "/fargate-test/db-password",
-          "name": "DB_PASSWORD"
-        },
-        {
-          "valueFrom": "/fargate-test/db-username",
-          "name": "DB_USERNAME"
-        },
-        {
-          "valueFrom": "/fargate-test/rails-master-key",
-          "name": "RAILS_MASTER_KEY"
-        },
-        {
-          "valueFrom": "/fargate-test/redis-url",
-          "name": "REDIS_URL"
-        }
-      ],
-      "name": "fargate-test-sidekiq"
     }
   ],
   "placementConstraints": [],
