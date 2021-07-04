@@ -83,9 +83,9 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def-with-nginx.outputs.task-definition }}
-        service: fargate-test
+        service: fargate-test-app
         cluster: fargate-test
         wait-for-service-stability: true
         codedeploy-appspec: deploy/appspec.yml
-        codedeploy-application: AppECS-fargate-test-fargate-test
-        codedeploy-deployment-group: DgpECS-fargate-test-fargate-test
+        codedeploy-application: AppECS-fargate-test-fargate-test-app
+        codedeploy-deployment-group: DgpECS-fargate-test-fargate-test-app
