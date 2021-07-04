@@ -54,7 +54,7 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
       run: |
         docker build \
-          -f docker/production/Dockerfile \
+          -f docker/production/Dockerfile.nginx \
           --cache-from=$ECR_REGISTRY/$ECR_REPOSITORY:latest \
           --build-arg BUILDKIT_INLINE_CACHE=1 \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
