@@ -2,7 +2,7 @@
   "executionRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "app",
+      "name": "fargate-test-rails",
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": null,
@@ -79,10 +79,10 @@
           "awslogs-stream-prefix": "ecs/fargate-test"
         }
       },
-      "dependsOn": [
+      "volumesFrom": [
         {
-          "containerName": "app",
-          "condition": "START"
+          "sourceContainer": "fargate-test-rails",
+          "readOnly": null
         }
       ]
     }

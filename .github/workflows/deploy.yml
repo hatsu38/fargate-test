@@ -68,7 +68,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: deploy/task-definition.json
-        container-name: app
+        container-name: fargate-test-rails
         image: ${{ steps.build-image.outputs.image }}
 
     - name: 【Nginx】 Fill in the new image ID in the Amazon ECS task definition
