@@ -44,3 +44,6 @@ ADD docker/production/entrypoint.sh /app/entrypoint.sh
 EXPOSE 3000
 
 RUN chmod +x /app/entrypoint.sh
+
+VOLUME /app/public
+VOLUME /app/tmp
