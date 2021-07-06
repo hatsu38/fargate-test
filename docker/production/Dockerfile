@@ -2,6 +2,7 @@ FROM ruby:2.7.2 AS base
 
 WORKDIR /app
 ENV RAILS_ENV production
+ENV RACK_ENV production
 ENV NODE_MAJOR_VERSION 14
 ENV BUNDLE_DEPLOYMENT true
 ENV BUNDLE_PATH vendor/bundle

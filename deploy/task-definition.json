@@ -79,10 +79,10 @@
           "awslogs-stream-prefix": "ecs/fargate-test"
         }
       },
-      "volumesFrom": [
+      "dependsOn": [
         {
-          "sourceContainer": "fargate-test",
-          "readOnly": null
+          "containerName": "fargate-test",
+          "condition": "START"
         }
       ]
     }
