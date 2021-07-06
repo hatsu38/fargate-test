@@ -2,7 +2,7 @@
   "executionRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
-      "name": "fargate-test",
+      "name": "app",
       "logConfiguration": {
         "logDriver": "awslogs",
         "secretOptions": null,
@@ -64,7 +64,6 @@
     {
       "name": "fargate-test-nginx",
       "essential": true,
-      "links": ["fargate-test"],
       "portMappings": [
         {
           "hostPort": 80,
@@ -82,7 +81,7 @@
       },
       "dependsOn": [
         {
-          "containerName": "fargate-test",
+          "containerName": "app",
           "condition": "START"
         }
       ]
