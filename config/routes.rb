@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
   mount Flipper::UI.app(Flipper) => '/flipper'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  get "*anything" => "errors#not_found"
 end
