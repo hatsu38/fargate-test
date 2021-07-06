@@ -22,19 +22,19 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR_VERSION.x | bash - && 
 # bundle
 FROM builder AS bundle
 
-COPY Gemfile Gemfile.lock .
+COPY Gemfile Gemfile.lock /app/
 RUN bundle install --jobs=4 --retry=3 && rm -rf $BUNDLE_PATH/ruby/$RUBY_VERSION/cache/*
 
 # yarn
 FROM builder AS yarn
 
-COPY package.json yarn.lock .
+COPY package.json yarn.lock /app/
 RUN yarn install --production --frozen-lockfile && yarn cache clean
 
 # main
 FROM builder AS main
 
-COPY . .
+COPY . /app/
 
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
 COPY --from=yarn /app/node_modules /app/node_modules
