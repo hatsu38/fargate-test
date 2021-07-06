@@ -2,6 +2,7 @@ FROM ruby:2.7.2 AS base
 
 WORKDIR /app
 ENV RAILS_ENV production
+ENV RACK_ENV production
 ENV NODE_MAJOR_VERSION 14
 ENV BUNDLE_DEPLOYMENT true
 ENV BUNDLE_PATH vendor/bundle
@@ -16,7 +17,7 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR_VERSION.x | bash - && 
     echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list && \
     apt-get update -qq && \
     apt-get install -y --no-install-recommends \
-    vim locales build-essential curl libpq-dev libmariadb-dev nodejs yarn nginx sudo
+    vim locales build-essential curl libpq-dev libmariadb-dev nodejs yarn
 
 # bundle
 FROM builder AS bundle
@@ -38,12 +39,11 @@ COPY . .
 COPY --from=bundle /app/vendor/bundle /app/vendor/bundle
 COPY --from=yarn /app/node_modules /app/node_modules
 
-# nginx
-RUN groupadd nginx
-RUN useradd -g nginx nginx
-ADD docker/production/nginx.conf /etc/nginx/nginx.conf
 ADD docker/production/entrypoint.sh /app/entrypoint.sh
 
-EXPOSE 80
+EXPOSE 3000
 
 RUN chmod +x /app/entrypoint.sh
+
+VOLUME /app/public
+VOLUME /app/tmp
