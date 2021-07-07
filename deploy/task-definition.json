@@ -24,6 +24,17 @@
         "/app/entrypoint.sh"
       ],
       "cpu": 0,
+      "healthCheck": {
+        "retries": 10,
+        "command": [
+          "CMD-SHELL",
+          "curl localhost:3000",
+          "\"|| exit 1\""
+        ],
+        "timeout": 30,
+        "interval": 5,
+        "startPeriod": 30
+      },
       "environment": [
         {
           "name": "RAILS_ENV",
@@ -79,10 +90,16 @@
           "awslogs-stream-prefix": "ecs/fargate-test"
         }
       },
+      "dependsOn": [
+        {
+          "containerName": "fargate-test-rails",
+          "condition": "HEALTHY"
+        }
+      ],
       "volumesFrom": [
         {
           "sourceContainer": "fargate-test-rails",
-          "readOnly": null
+          "readOnly": true
         }
       ]
     }
