@@ -95,12 +95,6 @@
           "containerName": "fargate-test-rails",
           "condition": "HEALTHY"
         }
-      ],
-      "volumesFrom": [
-        {
-          "sourceContainer": "fargate-test-rails",
-          "readOnly": true
-        }
       ]
     }
   ],
