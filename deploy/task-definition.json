@@ -3,9 +3,9 @@
   "containerDefinitions": [
     {
       "name": "fargate-test-rails",
+      "essential": true,
       "logConfiguration": {
         "logDriver": "awslogs",
-        "secretOptions": null,
         "options": {
           "awslogs-group": "/ecs/fargate-test",
           "awslogs-region": "ap-northeast-1",
@@ -23,7 +23,6 @@
       "command": [
         "/app/entrypoint.sh"
       ],
-      "cpu": 0,
       "healthCheck": {
         "retries": 10,
         "command": [
@@ -98,7 +97,6 @@
       ]
     }
   ],
-  "placementConstraints": [],
   "memory": "512",
   "taskRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "compatibilities": [
