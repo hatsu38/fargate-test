@@ -27,7 +27,7 @@
         "retries": 10,
         "command": [
           "CMD-SHELL",
-          "curl localhost:3000 ./",
+          "curl localhost:3000/api/health_check",
           "\"|| exit 1\""
         ],
         "timeout": 30,
