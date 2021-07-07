@@ -98,7 +98,7 @@
       "healthCheck": {
         "command": [
           "CMD-SHELL",
-          "curl localhost/api/health_check",
+          "curl -f http://localhost/",
           "\"|| exit 1\""
         ]
       }
