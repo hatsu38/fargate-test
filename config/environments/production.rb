@@ -51,7 +51,6 @@ Rails.application.configure do
   # https://github.com/ianheggie/health_check/issues/25
   config.ssl_options = { redirect: { exclude: -> request { request.path =~ /^\/api\/health_check$/ } } }
 
-
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
