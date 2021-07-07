@@ -28,7 +28,7 @@
         "retries": 10,
         "command": [
           "CMD-SHELL",
-          "curl localhost:3000",
+          "curl --unix-socket /app/tmp/sockets/puma.sock ./",
           "\"|| exit 1\""
         ],
         "timeout": 30,
