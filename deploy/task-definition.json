@@ -94,7 +94,14 @@
           "containerName": "fargate-test-rails",
           "condition": "HEALTHY"
         }
-      ]
+      ],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl localhost/api/health_check",
+          "\"|| exit 1\""
+        ]
+      }
     }
   ],
   "memory": "512",
