@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_101009) do
+ActiveRecord::Schema.define(version: 2021_07_07_071141) do
 
   create_table "blogs", charset: "utf8mb4", comment: "ブログ", force: :cascade do |t|
     t.bigint "employee_id"
@@ -18,6 +18,12 @@ ActiveRecord::Schema.define(version: 2021_06_27_101009) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["employee_id"], name: "index_blogs_on_employee_id"
+  end
+
+  create_table "companies", charset: "utf8mb4", comment: "会社", force: :cascade do |t|
+    t.string "name", null: false, comment: "会社名"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "employee_authenticates", charset: "utf8mb4", force: :cascade do |t|

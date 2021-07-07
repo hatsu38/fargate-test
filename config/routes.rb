@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :companies
   devise_for :employee_authenticates
   require 'sidekiq/web'
   root "blogs#index"
