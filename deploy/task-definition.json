@@ -73,6 +73,7 @@
     },
     {
       "name": "fargate-test-nginx",
+      "image": "318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest",
       "essential": true,
       "portMappings": [
         {
