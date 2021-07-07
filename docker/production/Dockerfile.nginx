@@ -1,6 +1,6 @@
 # docker build -f docker/production/Dockerfile.nginx -t fargate-test-nginx .
-# docker tag fargate-test-nginx:latest xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
-# docker push xxxx.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
+# docker tag fargate-test-nginx:latest 318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
+# docker push 318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest
 
 FROM nginx:1.21.0
 
@@ -16,5 +16,3 @@ RUN apt-get update -qq && \
 ADD docker/production/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
-
-CMD [ "nginx", "-g", "daemon off;" ]
