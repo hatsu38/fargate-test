@@ -110,7 +110,7 @@
   "compatibilities": [
     "FARGATE"
   ],
-  "family": "fargate-test-app",
+  "family": "fargate-test",
   "requiresCompatibilities": [
     "FARGATE"
   ],
