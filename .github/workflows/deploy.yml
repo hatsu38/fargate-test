@@ -45,24 +45,6 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
-    - name: 【Nginx】Build, tag, and push image to Amazon ECR
-      id: build-image-nginx
-      env:
-        DOCKER_BUILDKIT: 1
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: fargate-test-nginx #ECRのリポジトリ名
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        docker build \
-          -f docker/production/Dockerfile.nginx \
-          --cache-from=$ECR_REGISTRY/$ECR_REPOSITORY:latest \
-          --build-arg BUILDKIT_INLINE_CACHE=1 \
-          -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
-          -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
     - name: 【Rails】 Fill in the new image ID in the Amazon ECS task definition
       id: task-def-with-rails
       uses: aws-actions/amazon-ecs-render-task-definition@v1
@@ -71,21 +53,13 @@ jobs:
         container-name: fargate-test-rails
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: 【Nginx】 Fill in the new image ID in the Amazon ECS task definition
-      id: task-def-with-nginx
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }}
-        container-name: fargate-test-nginx
-        image: ${{ steps.build-image-nginx.outputs.image }}
-
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def-with-nginx.outputs.task-definition }}
-        service: fargate-test-app
+        task-definition: ${{ steps.task-def-with-rails.outputs.task-definition }}
+        service: fargate-test
         cluster: fargate-test
         wait-for-service-stability: true
         codedeploy-appspec: deploy/appspec.yml
-        codedeploy-application: AppECS-fargate-test-fargate-test-app
-        codedeploy-deployment-group: DgpECS-fargate-test-fargate-test-app
+        codedeploy-application: AppECS-fargate-test-fargate-test
+        codedeploy-deployment-group: DgpECS-fargate-test-fargate-test

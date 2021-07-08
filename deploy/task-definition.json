@@ -3,9 +3,9 @@
   "containerDefinitions": [
     {
       "name": "fargate-test-rails",
+      "essential": true,
       "logConfiguration": {
         "logDriver": "awslogs",
-        "secretOptions": null,
         "options": {
           "awslogs-group": "/ecs/fargate-test",
           "awslogs-region": "ap-northeast-1",
@@ -23,7 +23,17 @@
       "command": [
         "/app/entrypoint.sh"
       ],
-      "cpu": 0,
+      "healthCheck": {
+        "retries": 10,
+        "command": [
+          "CMD-SHELL",
+          "curl localhost:3000/api/health_check",
+          "\"|| exit 1\""
+        ],
+        "timeout": 30,
+        "interval": 5,
+        "startPeriod": 30
+      },
       "environment": [
         {
           "name": "RAILS_ENV",
@@ -63,6 +73,7 @@
     },
     {
       "name": "fargate-test-nginx",
+      "image": "318288222771.dkr.ecr.ap-northeast-1.amazonaws.com/fargate-test-nginx:latest",
       "essential": true,
       "portMappings": [
         {
@@ -79,21 +90,27 @@
           "awslogs-stream-prefix": "ecs/fargate-test"
         }
       },
-      "volumesFrom": [
+      "dependsOn": [
         {
-          "sourceContainer": "fargate-test-rails",
-          "readOnly": null
+          "containerName": "fargate-test-rails",
+          "condition": "HEALTHY"
         }
-      ]
+      ],
+      "healthCheck": {
+        "command": [
+          "CMD-SHELL",
+          "curl -f http://localhost/",
+          "\"|| exit 1\""
+        ]
+      }
     }
   ],
-  "placementConstraints": [],
   "memory": "512",
   "taskRoleArn": "arn:aws:iam::318288222771:role/ecsTaskExecutionRole",
   "compatibilities": [
     "FARGATE"
   ],
-  "family": "fargate-test-app",
+  "family": "fargate-test",
   "requiresCompatibilities": [
     "FARGATE"
   ],
